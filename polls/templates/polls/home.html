@@ -1,0 +1,71 @@
+{% extends 'polls/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<head>
+  <style>
+  
+    .cuerpo {
+      overflow-y: hidden;
+    }
+
+    .imagen-derecha {
+      float: right;
+      width: 900px; /* Ajusta el ancho según tus necesidades */
+      height : 823px;
+    }
+
+  </style>
+
+</head>
+
+
+<div class ="cuerpo">
+  
+  <img src="https://cdnimg.bnamericas.com/ycygpVqmRdxiqTPfIjLnFVoBoDfaMTDbvzyAyhiFsVEANqwkqNNxrLlOilpWTjCY.jpg" alt="Imagen a la derecha" class="imagen-derecha">
+  <br><br><br>
+  <div class="container text-left">
+    <div class="row">
+      <div class="col-3">
+        <div class = "d-grid gap-2">
+          <a href = '/polls/'><button type="button" class="btn btn-primary btn-lg btn-block text-left" style="width: 495px; height: 100px; background-color: #D9D9D9; color: black;">Votar</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+
+  {% if perms.foo %}
+  <div class="container text-left">
+    <div class="row">
+      <div class="col-3">
+        <div class = "d-grid gap-2">
+          <a href = '/polls/menu/'><button type="button" class="btn btn-primary btn-lg btn-block text-left" style="width: 495px; height: 100px; background-color: #D9D9D9; color: black;">Personalizar preguntas</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+  <br><br>
+
+  <div class="container text-left">
+    <div class="row">
+      <div class="col-3">
+        <div class = "d-grid gap-2">
+          <a href = '/polls/10/results/'><button type="button" class="btn btn-primary btn-lg btn-block text-left" style="width: 495px; height: 100px; background-color: #D9D9D9; color: black;">Ver resultados</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<br><br>
+
+
+
+{% endblock %}
+

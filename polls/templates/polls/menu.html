@@ -1,0 +1,95 @@
+{% extends 'polls/base.html' %}
+
+{% block title %}menu{% endblock %}
+
+{% block content %}
+
+<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+          </svg>
+      </a></li>
+      <li class="breadcrumb-item active" aria-current="page">Editar</li></a>
+    </ol>
+  </nav>
+
+<h1>Seleccione la opción que quiera modificar</h1>
+
+<center><p> o agregue una <a href = '{% url 'polls:CreateQuestion' %}'>nueva pregunta</a> </p></center>
+
+{% if perms.foo %}
+    {% if latest_question_list %}
+        <ul>
+            {% for question in latest_question_list %}
+            <div class="question-item">
+                <h1>{{ question.question_text }}</h1> 
+
+                <center><div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <a href = '{% url 'polls:UpdateQuestion' question.id %}'><button type="button" class="btn btn-outline-primary">Modificar</button></a>
+                    <a href = '{% url 'polls:DeleteQuestion' question.id %}'><button type="button" class="btn btn-outline-primary">Eliminar</button></a>
+                    <a href = '{% url 'polls:CreateChoice' question.id %}'><button type="button" class="btn btn-outline-primary">Agregar respuesta</button></a>
+                </div></center>
+
+            <br>
+
+            
+
+              {% for choice in question.choice_set.all %}
+            
+               <li>{{ choice.choice_text }}</li>
+
+               <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <a href = '{% url 'polls:UpdateChoice' choice.id %}'><button type="button" class="btn btn-outline-primary">Modificar</button></a>
+                    <a href = '{% url 'polls:DeleteChoice' choice.id %}'><button type="button" class="btn btn-outline-primary">Eliminar</button></a>
+              </div>
+
+                <br><br>
+
+              {% endfor %}
+
+            {% endfor %}
+
+        </ul>
+        {% else %}
+        <p>No hay encuestas disponibles.</p>
+    {% endif %}
+{% endif %}
+
+{% endblock %}
+
+
+<!--<br><br> 
+<h1> ¿Qué pregunta quieres personalizar? </h1>
+
+<div class="question-grid">
+  {% if latest_question %}
+      <div id="accordion">
+          {% for question in latest_question %}
+              <div class="card">
+                  <div class="card-header" id="heading{{ question.id }}">
+                      <h5 class="mb-0">
+                          <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ question.id }}" aria-expanded="true" aria-controls="collapse{{ question.id }}">
+                              {{ question.question_text }}
+                          </button>
+                      </h5>
+                  </div>
+
+                  <div id="collapse{{ question.id }}" class="collapse" aria-labelledby="heading{{ question.id }}" data-parent="#accordion">
+                      <div class="card-body">
+                          <a href = '{% url 'polls:UpdateQuestion' question.id %}' ><ul> Modificar la pregunta </ul></a> 
+                          <a href = '{% url 'polls:UpdateChoices' question.id %}'><ul> Modificar las respuestas </ul></a>
+                          <a href = '{% url 'polls:DeleteQuestion' question.id %}'><ul> Eliminar pregunta </ul></a>
+                          <a href = ''><ul> Eliminar respuesta </ul></a>
+                          <a href = ''><ul> Agregar respuestas </ul></a>
+                      </div>
+                  </div>
+              </div>
+          {% endfor %}
+      </div>
+  {% else %}
+        <p>No hay encuestas disponibles.</p>
+    {% endif %}
+  </div>
+-->
