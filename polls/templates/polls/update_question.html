@@ -18,15 +18,9 @@
 
 <center><h1>{{question.question_text}}</h1></center>
 
-{% load django_bootstrap5 %}
-
-<form action="/url/to/submit/" method="post" class="form">
-    {% csrf_token %}
-
-    {% bootstrap_form form %}
-
-    {% bootstrap_button button_type="submit" content="Update" %}
-    {% bootstrap_button button_type="reset" content="Cancel" %}
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update">
 </form>
 
 

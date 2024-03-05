@@ -1,5 +1,7 @@
 {% extends 'polls/base.html' %}
 
+{% load django_bootstrap5 %}
+
 {% block title %}Menu{% endblock %}
 
 {% block content %}
@@ -17,8 +19,6 @@
   </nav>
 
 <h1> Agregue la respuesta </h1>
-
-{% load django_bootstrap5 %}
 
 <form action="/url/to/submit/" method="post" class="form">
     {% csrf_token %}

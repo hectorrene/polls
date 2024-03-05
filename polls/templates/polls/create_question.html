@@ -1,5 +1,7 @@
 {% extends 'polls/base.html' %}
 
+{% load django_bootstrap5 %}
+
 {% block title %}Menu{% endblock %}
 
 {% block content %}
@@ -18,9 +20,12 @@
 
 <h1> Agregue la pregunta </h1>
 
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-</form>
+<form action="/url/to/submit/" method="post" class="form">
+  {% csrf_token %}
+
+  {% bootstrap_form form %}
+
+  {% bootstrap_button button_type="submit" content="OK" %}
+  {% bootstrap_button button_type="reset" content="Cancel" %}
 
 {% endblock %}
